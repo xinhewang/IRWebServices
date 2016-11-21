@@ -8,8 +8,7 @@ RUN apt-get install -y \
 # PIP Upgrade
 RUN pip install --upgrade pip
 
-ADD src /usr/local/etc/src
-RUN pip install -r /usr/local/etc/src/requirements.txt
+ADD src /var/local/src
+RUN pip install -r /var/local/src/requirements.txt
 
-ADD docker-entry /usr/bin/docker-entry
-CMD ["sudo python2.7","/usr/local/etc/src/MainHandler.py"]
+CMD ["python2.7","/var/local/src/MainHandler.py"]
