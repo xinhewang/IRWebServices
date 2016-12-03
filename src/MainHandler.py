@@ -14,15 +14,19 @@ class MainHandler(tornado.web.RequestHandler):
 			out["terms"] = response
 			self.write(out)
 		except ValueError, e:
+			print("throw an error: %s" + str(e))
 			self.write(out)
+
+	get = post
 		
 
 def make_app():
 	return tornado.web.Application([
-		(r"/", MainHandler),
+		(r"/api/getnouns", MainHandler),
 	])
 
 if __name__ == "__main__":
 	app = make_app();
 	app.listen(8888)
+	print("listening at port 8888...")
 	tornado.ioloop.IOLoop.current().start()
