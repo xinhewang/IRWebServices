@@ -11,14 +11,13 @@ class MainHandler(tornado.web.RequestHandler):
 		try:
 			data = json.loads(self.request.body)
 			if "sentence" not in data:
-				print("No sentence in given data")
-        		raise ValueError("No sentence in given data")
+				raise ValueError("Invalid input request data, does not have sentence as key")
 			response = Parser.NounsParser(data["sentence"])
 			out["terms"] = response
 			self.write(out)
 		except ValueError, e:
-			print("throw an error: %s" + str(e))
-			self.write(out)
+			print("throw an error: " + str(e))
+			self.write("Error: " + str(e))
 	
 	def get(self):
 		out = {"terms":[]}
