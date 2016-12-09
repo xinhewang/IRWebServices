@@ -13,4 +13,6 @@ ADD src /var/src
 WORKDIR /var/src
 
 RUN pip install -r /var/src/requirements.txt
+RUN python -m nltk.downloader -d /usr/local/share/nltk_data all
+
 CMD ["python2.7","/var/src/MainHandler.py"]

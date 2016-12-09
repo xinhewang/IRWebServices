@@ -14,7 +14,9 @@ class MainHandler(tornado.web.RequestHandler):
 				raise ValueError("Invalid input request data, does not have sentence as key")
 			response = Parser.NounsParser(data["sentence"])
 			out["terms"] = response
-			self.write(out)
+			self.set_status(200)
+			self.set_header('Content-Type', 'application/json; charset="utf-8"')
+			self.write(json.dumps(out))
 		except ValueError, e:
 			print("throw an error: " + str(e))
 			self.write("Error: " + str(e))

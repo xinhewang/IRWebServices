@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+	    // locate your element and add the Click Event Listener
+	    function getRes(id) {
+	    	if (id == "google") {
+	    		$.ajax ({
+	    			url: "http://httpbin.org/ip",
+	    			error: function() {
+	    				$("#content").html("<p>not found</p>")
+	    			},
+	    			dataType: "json",
+	    			success: function(data) {
+	    				var $address = $("<p>").text(data.origin);
+	    				$("#content").html($address);
+	    			},
+	    			type:"GET"
+	    		});
+	    		alert("google api called");
+	    	}
+	    	else if (id == "yelp") {
+	    		alert("yelp api called");
+	    	}
+	    }
+	</script>
+</head>
+<body>
+<div class="container">
+	<div class="dropdown">
+	  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
+	  <span class="caret"></span></button>
+	  <ul class="dropdown-menu" id ="parent-list">
+	    <li><a href="#" onclick="getRes('google')">Google</a></li>
+	    <li><a href="#" onclick="getRes('yelp')">CSS</a></li>
+	  </ul>
+	</div>
+	<div class="container">
+		<div id="content">
+
+		</div> 
+	</div>
+</div>
+</body>
+</html>

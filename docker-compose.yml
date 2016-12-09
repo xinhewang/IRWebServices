@@ -1,0 +1,6 @@
+version: '2'
+services:
+  app:
+    image: xinhehe/irapi:app
+    ports:
+    - 8888:8888
